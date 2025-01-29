@@ -35,8 +35,6 @@ public class Account implements AccountService {
     @Override
     public void printStatement() {
         System.out.println("Date\t\t||\tAmount\t||\tBalance");
-        for (Transaction transaction : transactions) {
-            System.out.println(transaction);
-        }
+        transactions.forEach(System.out::println);
     }
 }
