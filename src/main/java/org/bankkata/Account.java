@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Account implements AccountService {
     private int balance;
-    private LinkedList<Transaction> transactions;
+    private final LinkedList<Transaction> transactions;
 
     public Account() {
         this.balance = 0;
@@ -17,7 +17,7 @@ public class Account implements AccountService {
             throw new IllegalArgumentException("Deposit amount must be positive");
         }
         balance += amount;
-        transactions.addFirst(new Transaction("deposit", amount, balance));
+        transactions.addFirst(new Transaction(amount, balance));
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Account implements AccountService {
             throw new IllegalArgumentException("Insufficient balance");
         }
         balance -= amount;
-        transactions.addFirst(new Transaction("withdrawal", -amount, balance));
+        transactions.addFirst(new Transaction(-amount, balance));
     }
 
     @Override
